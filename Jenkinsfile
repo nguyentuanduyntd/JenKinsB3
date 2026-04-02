@@ -8,6 +8,7 @@ pipeline {
         timeout(time: 30, unit: 'MINUTES')
         timestamps()
     }
+    /*Hello*/
 
     stages {
         stage('Checkout') {
