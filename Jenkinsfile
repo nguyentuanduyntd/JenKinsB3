@@ -1,24 +1,26 @@
-pipeline{
+pipeline {
     agent any
 
     options {
-        timeout(timeout:30,unit:'MINUTES')
+        timeout(time: 30, unit: 'MINUTES')
         timestamps()
     }
-    stages{
-        stage('Checkout'){
-            steps{
+
+    stages {
+        stage('Checkout') {
+            steps {
                 checkout scm
             }
         }
-        stage('Install & Lint & Build'){
-            agent{
-                docker{
+
+        stage('Install & Lint & Build') {
+            agent {
+                docker {
                     image 'node:22-alpine'
                     reuseNode true
                 }
             }
-            steps{
+            steps {
                 sh 'node -v && npm -v'
                 sh 'npm ci'
                 sh 'npm run lint'
@@ -26,11 +28,12 @@ pipeline{
             }
         }
     }
-    post{
-        success{
+
+    post {
+        success {
             archiveArtifacts artifacts: 'dist/**/*', fingerprint: true, allowEmptyArchive: false
         }
-        failure{
+        failure {
             echo 'Pipeline thất bại'
         }
     }
