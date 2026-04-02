@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     triggers{
-        pollSCM('H/3 * * * *')
+        pollSCM('* * * * *')
     }
     options {
         timeout(time: 30, unit: 'MINUTES')
         timestamps()
     }
     /*Hello*/
-
+    /*Good bye*/
     stages {
         stage('Checkout') {
             steps {
