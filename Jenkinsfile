@@ -33,7 +33,7 @@ pipeline {
 
     post {
         success {
-            archiveArtifacts artifacts: 'dist/**/*', fingerprint: true, allowEmptyArchive: false
+            archiveArtifacts artifacts: 'my-react-app/dist/**/*', fingerprint: true, allowEmptyArchive: false
         }
         failure {
             echo 'Pipeline thất bại'
